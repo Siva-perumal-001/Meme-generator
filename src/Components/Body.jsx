@@ -9,18 +9,26 @@ function Body() {
     imgURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sLmBgeKFMu2IfvJSNypbXk1l-EvdoeUYGw&s"
   }) 
 
+  function keyChange(event){
+    const {value,name} = event.currentTarget;
+    setMeme(prevMeme => ({
+      ...prevMeme,
+      [name]:value
+    }));
+  }
+
   return (
     <main>
       <div className='form'>
         <div className='input-grp'>
           <label>Top text
-            <input type="text" name='topText' placeholder="Shut up" />
+            <input type="text" name='topText' placeholder="Shut up" onChange={keyChange} value={meme.topText} />
           </label>
           <label>Bottom text
-            <input type="text" name='bottomText' placeholder="And take my money"/>
+            <input type="text" name='bottomText' placeholder="And take my money" onChange={keyChange} value={meme.bottomText} />
           </label>
         </div>
-        <button>Get a new meme image</button>
+        <button>Get a new meme image🖼️</button>
       </div>
 
       <div className='meme'>
