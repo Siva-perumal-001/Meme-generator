@@ -12,8 +12,8 @@ function Body() {
   },[])
 
   const [meme,setMeme] = useState({
-    topText:"Shut up",
-    bottomText:"And take my money",
+    topText:"what's up Idiot!",
+    bottomText:"Click the button",
     imgURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sLmBgeKFMu2IfvJSNypbXk1l-EvdoeUYGw&s"
   }) 
 
