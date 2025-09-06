@@ -1,7 +1,15 @@
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import '../styles/style.css'
 
 function Body() {
+
+  const [allMeme,setAllMeme] = useState([])
+
+  useEffect(()=>{
+    fetch("https://api.imgflip.com/get_memes")
+      .then(res=>res.json())
+      .then(data => setAllMeme(data.data.memes))
+  },[])
 
   const [meme,setMeme] = useState({
     topText:"Shut up",
@@ -9,6 +17,16 @@ function Body() {
     imgURL:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9sLmBgeKFMu2IfvJSNypbXk1l-EvdoeUYGw&s"
   }) 
 
+ 
+  function getMeme(){
+    const random = Math.floor(Math.random() * allMeme.length);
+    const memeURL = allMeme[random].url;
+    setMeme(prevMeme =>({
+      ...prevMeme,
+      imgURL : memeURL
+    }))
+  }
+  
   function keyChange(event){
     const {value,name} = event.currentTarget;
     setMeme(prevMeme => ({
@@ -28,7 +46,7 @@ function Body() {
             <input type="text" name='bottomText' placeholder="And take my money" onChange={keyChange} value={meme.bottomText} />
           </label>
         </div>
-        <button>Get a new meme image🖼️</button>
+        <button onClick={getMeme}>Get a new meme image🖼️</button>
       </div>
 
       <div className='meme'>
